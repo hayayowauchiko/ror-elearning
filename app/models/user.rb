@@ -10,6 +10,8 @@ class User < ApplicationRecord
                                      dependent: :destroy
     has_many :followers, through: :passive_relationships
 
+    has_many :lessons, dependent: :destroy
+
 
     has_secure_password
         validates :password,
