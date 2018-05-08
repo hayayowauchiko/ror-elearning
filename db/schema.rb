@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_08_035048) do
+ActiveRecord::Schema.define(version: 2018_05_08_042931) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -48,6 +48,15 @@ ActiveRecord::Schema.define(version: 2018_05_08_035048) do
     t.boolean "admin", default: false
   end
 
+  create_table "word_answers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "word_id"
+    t.string "content"
+    t.boolean "correct"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["word_id"], name: "index_word_answers_on_word_id"
+  end
+
   create_table "words", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "category_id"
     t.string "content"
@@ -58,5 +67,6 @@ ActiveRecord::Schema.define(version: 2018_05_08_035048) do
 
   add_foreign_key "lessons", "categories"
   add_foreign_key "lessons", "users"
+  add_foreign_key "word_answers", "words"
   add_foreign_key "words", "categories"
 end
