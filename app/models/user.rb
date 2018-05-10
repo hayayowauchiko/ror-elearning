@@ -28,4 +28,9 @@ class User < ApplicationRecord
                     length: {minimum: 5},
                     format: {with: VALID_EMAIL_REGEX}, #上で定義したvalidを使う
                     uniqueness: {case_sensitive: false} #大文字も小文字も同じ内容と認識する
+
+    private
+    def downcase_email
+        email.downcase! #末尾に!をつける事でuser.emailに対しての代入も同時に果たしてくれる
+    end
 end
