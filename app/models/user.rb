@@ -14,6 +14,8 @@ class User < ApplicationRecord
 
     has_many :activities, dependent: :destroy
 
+    before_save :downcase_email #{ email.downcase! }  #callback #before_save {self.email = email.downcase}
+    validates :name, presence: true, length: {minimum: 5}
 
     has_secure_password
         validates :password,
