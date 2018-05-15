@@ -22,3 +22,48 @@
   width: auto;
   margin-left: 0;
 }
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  display: unset;
+
+}
+
+.stats {
+  overflow: auto;
+  margin-top: 0;
+  padding: 0;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid $gray-lighter;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: blue;
+    }
+  }
+  strong {
+    display: block;
+  }
+}
+
+.user_info h3{
+  margin-top: 0px;
+}
+
+.btn-bigger{
+  .btn {
+    padding: 10px 80px;
+    font-size: 25px;
+    line-height: 1.3333333;
+    margin: auto 10px;
+    border-radius: 6px;
+  }
+}
+

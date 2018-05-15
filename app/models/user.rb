@@ -3,6 +3,8 @@ class User < ApplicationRecord
   attr_accessor :remember_token
   #def name は@name, def name(引数) @name = name user.remember_tokenでアクセスできるようになる。
   #DBに格納する訳ではないので、attr_accssorを使う
+  mount_uploader :picture, PictureUploader
+  validate  :picture_size
 
   has_many :active_relationships, class_name:  "Relationship",
                                  foreign_key: "follower_id",
@@ -26,8 +28,9 @@ class User < ApplicationRecord
 
   has_secure_password
     validates :password,
+                        presence: true,
                         length: {minimum: 6},
-                        allow_nil: true
+                        allow_nil: true #has_secure_passwordは新規object発行時にpasswordの存在性について検証してくれている
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i # emailを正規表現を使ってvalidates
   validates :email,
@@ -55,6 +58,21 @@ class User < ApplicationRecord
     end
   end
 
+  # ユーザーをフォローする
+  def follow(other_user)
+    active_relationships.create(followed_id: other_user.id)
+  end
+
+  # ユーザーをフォロー解除する
+  def unfollow(other_user)
+    active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  # 現在のユーザーがフォローしてたらtrueを返す
+  def following?(other_user)
+    following.include?(other_user)
+  end
+
 
   private
   def downcase_email
@@ -71,6 +89,15 @@ class User < ApplicationRecord
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
     BCrypt::Password.create(remember_token, cost: cost)
   end
+
+# アップロードされた画像のサイズをバリデーションする
+
+  def picture_size
+    if picture.size > 5.megabytes
+      errors.add(:picture, "should be less than 5MB")
+    end
+  end
+
 end
 
 

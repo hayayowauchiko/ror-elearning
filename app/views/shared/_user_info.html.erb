@@ -1,0 +1,12 @@
+<% @user ||= current_user %>
+
+<h3>User's information</h3>
+<div class="avatar">
+    <% if @user.picture? %>
+        <%= image_tag @user.picture.url %>
+    <% else %>
+        <img class="avatar" src="/user_default_picture/default_image.png" alt="default-avatar">
+    <% end %>
+</div>
+<div>Name：<%= @user.name %></div>
+<div>Email：<%= @user.email %></div>
