@@ -1,0 +1,21 @@
+<h1>All Users</h1>
+
+<%= will_paginate %>
+
+<ul>
+    <%= render @users %>
+    <%# @users.each do |user| %>
+<!--     <li class="users-avatar">
+        <%# if user.picture? %>
+            <%#= image_tag user.picture.url %>
+        <%# else %>
+            <img src="/user_default_picture/default_image.png">
+        <%# end %>
+            <%#= link_to user.name, user_path(user) %>
+    </li>
+ -->    <%# end %>
+</ul>
+
+<%= will_paginate %>
+
+<!-- render @usersはusersフォルダに入っていないとrailsが理解できない -->

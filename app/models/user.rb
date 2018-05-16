@@ -6,12 +6,14 @@ class User < ApplicationRecord
   mount_uploader :picture, PictureUploader
   validate  :picture_size
 
+  #active_relationshipsはfollower_idを軸として、followed_id(フォローしたい人)を)を決める
   has_many :active_relationships, class_name:  "Relationship",
                                  foreign_key: "follower_id",
                                  dependent: :destroy
 
   has_many :following, through: :active_relationships, source: :followed
 
+  #passive_relationshipsはfollowed_idを軸として、follower_id(フォローされてる人)を決める 
   has_many :passive_relationships, class_name: "Relationship",
                                    foreign_key: "followed_id",
                                    dependent: :destroy

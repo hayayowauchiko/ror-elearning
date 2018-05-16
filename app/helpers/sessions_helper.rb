@@ -50,6 +50,23 @@ module SessionsHelper
     session.delete(:user_id)
     @current_user = nil
   end
+
+  #アクセスしようとしたURLを覚えておく
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
+    #request.original_urlでリクエスト元が取得できる
+  end
+
+  #記憶したURL(もしくはdefault値)にリダイレクト
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
+
+  #渡されたユーザーがログイン済であればtrueを返す
+  def current_user?(user)
+    user == current_user #比較演算子だからtrueかfalseを返す
+  end
 end
 
 
