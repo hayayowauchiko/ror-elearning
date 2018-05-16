@@ -1,0 +1,6 @@
+<%= form_for(current_user.active_relationships.find_by(followed_id: @user.id),
+             html: { method: :delete }) do |f| %>
+	<%= f.submit "Unfollow", class: "btn btn-primary" %>
+<% end %>
+
+<!-- follower No.Xと followed No.Yの組み合わせのrelationship IDをrelationship controllerに送信している -->

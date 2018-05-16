@@ -9,9 +9,8 @@
     </aside>
 
     <div class="col-md-8">
-        <section class="activities">
-            <h3>Activities</h3>
-        </section>
+        <h3>Activities</h3>
+        <%= render "follow_form" if logged_in? %>
     </div>
 
 </div>

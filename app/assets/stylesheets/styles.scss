@@ -27,7 +27,15 @@
   width: 100px;
   height: 100px;
   display: unset;
+}
 
+.users-avatar img {
+  width: 100px;
+  height: 100px;
+}
+
+li {
+ display: block;
 }
 
 .stats {
@@ -53,7 +61,15 @@
   }
 }
 
+ul {
+  list-style: none;
+}
+
 .user_info h3{
+  margin-top: 0px;
+}
+
+.activities h3{
   margin-top: 0px;
 }
 
