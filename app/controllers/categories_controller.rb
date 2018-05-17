@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
 
   def index
-  	@categories = Category.paginate(page: params[:page])
+    @categories = Category.paginate(page: params[:page])
   end
 
   def new
@@ -17,7 +17,7 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params(:title, :description)
+    params.require(:category).permit(:title, :description)
   end
 
 end

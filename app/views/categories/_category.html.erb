@@ -1,15 +1,14 @@
 <li>
-	<div class=“row”>
-	    <div class="col-md-6">
-			<div class="title"><h1><%= category.title %></h1></div>
-			<div class="description"><%= category.description %></div>
+    <div class=“row”>
+        <div class="col-md-6">
+            <div class="title"><h1><%= category.title %></h1></div>
+            <div class="description"><%= category.description %></div>
             <div>
                 <%= link_to "Lesson Start", "#" , class: "btn btn-primary btn-lg" %>
             </div>
-
-		</div>
-		<div class="col-md-6">
-			<div class="category-picture"><%= image_tag category.picture.url %></div>
-		</div>
-	</div>
+        </div>
+        <div class="col-md-6">
+            <div class="category-picture"><%= image_tag category.picture.url %></div>
+        </div>
+    </div>
 </li>
