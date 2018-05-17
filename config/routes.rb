@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post '/login'    => 'sessions#create'
   delete '/logout' => 'sessions#destroy'  
 
+  resources :categories
   resources :relationships, only: [:create, :destroy]
   resources :users, except: :new do
     member do  #memberメソッドを使うとユーザーidがURLに含まれるように扱う
