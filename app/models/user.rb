@@ -7,11 +7,13 @@ class User < ApplicationRecord
   validate  :picture_size
 
   #active_relationshipsはfollower_idを軸として、followed_id(フォローしたい人)を)を決める
+  #has_manyのあとは関連名を付けてるだけで、それ自体にそこまで意味はない。重要なのはclassとforeign_key
   has_many :active_relationships, class_name:  "Relationship",
                                  foreign_key: "follower_id",
                                  dependent: :destroy
 
   has_many :following, through: :active_relationships, source: :followed
+  #:sourceオプションは、has_many :through関連付けにおける「ソースの」関連付け名、つまり関連付け元の名前を指定します。このオプションは、関連付け名から関連付け元の名前が自動的に推論できない場合以外には使用する必要はありません。
 
   #passive_relationshipsはfollowed_idを軸として、follower_id(フォローされてる人)を決める 
   has_many :passive_relationships, class_name: "Relationship",
