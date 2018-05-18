@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-md-6 col-center">
+        <h2 class="text-center">Word List</h2>
+    </div>
+    <%#= form_for @words url: word_path do |f| %>
+</div>
+
+<div class=“row”>
+        <table class="word_answer col-center">
+            <thead>
+                <tr>
+                    <th class="col-md-2"><h4>Word</h4></th>
+                    <th class="col-md-2"><h4>Answer</h4></th>
+                </tr>
+            </thead>
+                <tbody>
+                    <% @words.each do |word| %>
+                    <tr>
+                            <td><%= word.content %></td>
+                            <td><%= word.correct_answer.content %></td>
+                    </tr>
+                    <% end %>
+                </tbody>
+           
+        </table>
+</div>
+<%= will_paginate @words%>

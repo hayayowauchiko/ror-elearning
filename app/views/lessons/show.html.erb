@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-md-6 col-center">
+        <h1 class="text-center">Result</h1>
+    </div>
+</div>
+<% @lesson_words.each do |lesson_word| %>
+<div class="row">
+        <div class="col-md-4">
+            <h3 class="text-center"><%= lesson_word.word.content %></h3>
+        </div>
+        <div class="col-md-4">
+            <h3 class="text-center"><%= lesson_word.word_answer.content %></h3>
+        </div>
+        <div class="col-md-4">
+            <% if lesson_word.word_answer.correct == true %>
+                <h3 class="text-center">○</h3>
+            <% else %>
+                <h3 class="text-center">×</h3>
+            <% end %>
+        </div>
+</div>
+<% end %>
