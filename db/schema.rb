@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2018_05_17_020514) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_lessons_on_category_id"
+    t.index ["user_id", "category_id"], name: "index_lessons_on_user_id_and_category_id", unique: true
     t.index ["user_id"], name: "index_lessons_on_user_id"
   end
 

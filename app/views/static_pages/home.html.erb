@@ -10,12 +10,35 @@
         </aside>
         <div class="col-md-8">
                 <div class="btn-bigger">
-                    <%= link_to "Words", "#" , class: "btn btn-primary btn-lg" %>
+                    <%= link_to "Words", user_words_path(current_user) , class: "btn btn-primary btn-lg" %>
                     <%= link_to "Lesson", categories_path , class: "btn btn-primary btn-lg" %>
                 </div>
                 <section class="activities">
                     <h3>Activities</h3>
                 </section>
+                <% @lessons.each do |lesson| %>
+                    <span class="category-home">
+                        <ul>
+                            <li>
+                                <% if lesson.category.picture? %>
+                                    <%= image_tag category.picture.url %>
+                                <% else %>
+                                    <img src="/user_default_picture/default_setting.png" alt="default-avatar">
+                                <% end %>
+
+                                <span>learned: <%= pluralize(lesson.lesson_words.count, "word")%> in Lesson "<%= lesson.category.title %>"</span>
+                            </li>
+                        </ul>
+                    </span>
+                <% end %>
+
+
+    <!--                     <%# lesson.words.each do |word| %>
+                    <tr>
+                            <td><%#= word.content %></td>
+                            <td><%#= word.correct_answer.content %></td>
+                    </tr>
+ -->
         </div>
     </div>
 <% else %>

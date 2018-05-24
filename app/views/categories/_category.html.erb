@@ -3,12 +3,27 @@
         <div class="col-md-6">
             <div class="title"><h1><%= category.title %></h1></div>
             <div class="description"><%= category.description %></div>
-            <div>
-                <%= link_to "Lesson Start", "#" , class: "btn btn-primary btn-lg" %>
-            </div>
+            <% if category.lessons.where(user_id: current_user.id).any? %>
+                <div>
+                    <%= link_to "Already Done", lesson_path(id: category.id),
+                                                class: "btn btn-default btn-lg" %>
+                </div>
+            <% else %>
+                <div>
+                    <%= link_to "Lesson Start", lessons_path(category_id: category.id),
+                                                class: "btn btn-primary btn-lg",
+                                                method: :post %>
+                </div>
+            <% end %>
         </div>
         <div class="col-md-6">
-            <div class="category-picture"><%= image_tag category.picture.url %></div>
+            <div class="category-picture">
+                <% if category.picture? %>
+                    <%= image_tag category.picture.url %>
+                <% else %>
+                    <img src="/user_default_picture/default_setting.png" alt="default-avatar">
+                <% end %>
+            </div>
         </div>
     </div>
 </li>

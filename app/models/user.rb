@@ -23,6 +23,8 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships
 
   has_many :lessons, dependent: :destroy
+  has_many :words, through: :lessons
+  #lessonはhas_many words through lesson_wordsだから
 
   has_many :activities, dependent: :destroy
 
@@ -76,7 +78,6 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
-
 
   private
   def downcase_email
