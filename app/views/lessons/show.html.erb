@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col-md-6 col-center">
         <h1 class="text-center">Result</h1>
+        <h5 class="text-center">Category: <%= @lesson.category.title %> / correct_answers: <%=  @lesson.correct_answers.count %></h3>
     </div>
 </div>
 <% @lesson_words.each do |lesson_word| %>
