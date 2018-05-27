@@ -89,6 +89,7 @@ ul {
   }
 }
 
+
 .category-picture img{
   width: 100%;
 }
@@ -151,4 +152,16 @@ body {
 .category-home img{
   max-width: 100px;
   height: auto;
+}
+.jumbotron {
+  .btn{
+    padding: 5px;
+    width: 22%;
+  }
+}
+
+.form-group {
+  .choice {
+  width: 80%;
+ }
 }
