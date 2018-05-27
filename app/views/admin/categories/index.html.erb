@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-md-6 col-center">
+        <h1 class="text-center">Category Index</h1>
+    </div>
+    <div class="col-md-8 col-center jumbotron">
+        <%= link_to "Add Category", new_admin_category_path,
+                                    class: "btn btn-primary btn-xs"%>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Words</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <% @categories.each do |category| %>
+                    <tr>
+                        <td>
+                            <%= link_to category.title, 
+                                                        admin_category_words_path(category_id: category.id) %>
+                        </td>
+                        <td><%= category.description %></td>
+                        <td>test</td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>

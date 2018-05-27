@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   post '/login'    => 'sessions#create'
   delete '/logout' => 'sessions#destroy' 
 
-  resources :categories
+  namespace :admin do
+    resources :categories do
+      resources :words
+    end
+  end
+  resources :categories, only: [:index]
   resources :lessons do
     resources :lesson_words, path: "words", as: "words" #pathで指定した名前をlesson_wordsの代わりに利用できる #
   end
@@ -14,7 +19,10 @@ Rails.application.routes.draw do
     member do  #memberメソッドを使うとユーザーidがURLに含まれるように扱う
       get :following, :followers #/users/:id/followers(.:format)
     end
-    resources :words, only: [:index]
+    resources :words
+    resources :categories do
+      resources :words
+    end
   end
 
 end

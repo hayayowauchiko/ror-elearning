@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-md-6 col-center">
+        <h2 class="text-center">Create Word and Answers</h2>
+    </div>
+        <%= form_for ([:admin, @category, @word]) do |f| %>
+            <%#= render "shared/error_messages" %>
+            <%#= render 'shared/error_messages', object: f.object %>
+        <div class="col-md-8 col-center">
+            <div class="form-group">
+                <div class="col-sm-8 col-center">
+                    <%= f.label :content, "Word" %>
+                    <%= f.text_field :content , class: "form-control" %>
+                </div>
+            </div>
+
+<!--             ↓f.field_for :word_answers do |answer| ←each.do と同じ役割
+            そしてword controllerにword_answers_attributes: [:id、とか]
+            word.rbに、accepts_nested_attributes_for :word_answers -->
+
+            <%= f.fields_for :word_answers do |answer| %>
+                <div class="form-group form-inline">
+                    <div class="col-sm-8 col-center">
+                        <div><%= answer.label :content, "Choices" %></div>
+                        <%= answer.text_field :content, class: "form-control choice" %>
+                        <%= answer.label :correct, "correct" %>
+                        <%= answer.check_box :correct, {}, true, false %>
+                    </div>
+                </div>
+
+                <div class="form-group form-inline">
+                    <div class="col-sm-8 col-center">
+                        <%= answer.text_field :content, class: "form-control choice" %>
+                        <%= answer.label :correct, "correct" %>
+                        <%= answer.check_box :correct, {}, true, false %>
+                    </div>
+                </div>
+                <div class="form-group form-inline">
+                    <div class="col-sm-8 col-center">
+                        <%= answer.text_field :content, class: "form-control choice" %>
+                        <%= answer.label :correct, "correct" %>
+                        <%= answer.check_box :correct, {}, true, false %>
+                    </div>
+                </div>
+                <% end %>
+                <div class="form-group">
+                    <div class="col-sm-8 col-center">
+                        <%= f.submit "Save Word", class: "btn btn-primary form-control" %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+</div>
+
